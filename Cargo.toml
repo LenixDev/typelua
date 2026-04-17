@@ -1,11 +1,6 @@
 [package]
-name = "lenix"
-version = "0.1.0"
+name = "sysenix"
 edition = "2024"
-description = "modular crate"
-license = "MIT"
-include = [
-  "src/",
-  "Cargo.toml",
-]
+
 [dependencies]
+lenix = "0.1.3"

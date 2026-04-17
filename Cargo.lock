@@ -4,4 +4,13 @@ version = 4
 
 [[package]]
 name = "lenix"
-version = "0.1.0"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7f02ad9ec402cfdfe524a623eb139a8474b120daa6db752146a8b1333694b538"
+
+[[package]]
+name = "sysenix"
+version = "0.0.0"
+dependencies = [
+ "lenix",
+]

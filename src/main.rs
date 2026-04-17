@@ -1,17 +1,4 @@
-struct Player {
-	name: String,
-	score: i32,
-}
-
-impl Player {
-	fn new(name: String, score: i32) -> Player {
-		Player { name, score }
-	}
-
-	fn describe(&self) -> String {
-		format!("{} has scored: {}", self.name, self.score)
-	}
-}
+use lenix::Player;
 
 fn main() {
 	let score: i32 = 10;
