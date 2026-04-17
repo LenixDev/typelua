@@ -5,6 +5,7 @@ Finally your computer agent that does everything for you without you having to t
 - Tracker — watches your system, logs every change
 - Executor — undoes changes cleanly and completely
 - AI layer — natural language interface on top
+- Controller - controls your device by clicking, typing and watching
 
 ## How does it work?
 - While it contains AI, Tracker and an Executor, this will have the ability to do something like this:
@@ -20,3 +21,7 @@ Or instead of asking AI how to install **Intellenix** and going through 10 steps
 > install **Intellenix**
 
 And it figures out the right way **BASED ON your specific system**, does it, and logs every single change so you can undo it later with one command.
+
+You ask:
+> create an Intellenix account for me
+And it'll open app/browser and process the request by interacting from your device
