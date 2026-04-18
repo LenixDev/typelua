@@ -1,45 +1,18 @@
 use std::fs;
 use std::path::Path;
-use console::style;
+use fs_extra;
 
-fn tree(path: &Path, depth: usize) {
-  let indent = "  ".repeat(depth);
-  println!(
-    "{}{}",
-    indent,
-    path.file_name().unwrap_or_default().to_string_lossy()
-  );
-  let Ok(entries) = fs::read_dir(path) else {
-    return;
-  };
-  for entry in entries.flatten() {
-    let path = entry.path();
-    if path.is_dir() {
-      tree(&path, depth + 1)
-    } else {
-      println!(
-        "{}  {}",
-        indent,
-        path.file_name().unwrap_or_default().to_string_lossy()
-      )
-    }
-  }
-}
-
-fn request_full_disk_access() {
-	open::that("x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles").unwrap();
-	println!("{}", style("⚠️ Full Disk Access required").yellow().bold());
-}
-
-fn has_full_disk_access() -> bool {
-	std::fs::read_dir("/Library/Application Support/com.apple.TCC").is_ok()
-}
-
-fn main() {
-	if !has_full_disk_access() {
-		request_full_disk_access();
-		return;
+fn tree() -> Result<(), Box<dyn std::error::Error>> {
+	for dir in fs::read_dir(Path::new("/"))? {
+		let path = dir?.path();
+		match fs_extra::dir::get_size(&path) {
+			Ok(size) => println!("{}: {}", path.display(), size),
+			Err(_) => println!("{}: Error(permission denied?)", path.display()),
 	}
+	}
+	Ok(())
+}
 
-  tree(Path::new("/"), 0);
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+  tree()
 }
